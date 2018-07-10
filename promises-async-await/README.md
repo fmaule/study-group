@@ -80,9 +80,6 @@ try {
 }
 ```
 
-
-
-
 # Interesting stuff to read/watch
 - [What is a promise](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261)
 - [callbacks, Promises and async/await](https://medium.com/front-end-hacking/callbacks-promises-and-async-await-ad4756e01d90)
