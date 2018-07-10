@@ -16,7 +16,7 @@ So what if you want to await something inside your main scope, given that it's n
 
 You can achieve that in three ways:
 
-chaining the function to a .then
+chaining the function to a .then, and resolving the promise
 
 ```
 yourAsyncFunction()
@@ -24,6 +24,8 @@ yourAsyncFunction()
 ```
 
 creating an async function and call it from the main scope
+
+**WARNING**: this is not ideal. Will work, but any *async* function will return a Promise and we are just ignoring it, could potentially lead to unhandled promise rejections
 ```
 const fnThatCanAwait = async () => {
   await yourAsyncFunction();
@@ -34,6 +36,7 @@ fnThatCanAwait();
 ```
 creating an asynchronous IIFE (Immediately-invoked function expression)
 
+**WARNING**: this is not ideal. Will work, but any *async* function will return a Promise and we are just ignoring it, could potentially lead to unhandled promise rejections
 ```
 (async () => {
   await yourAsyncFunction();
@@ -41,7 +44,28 @@ creating an asynchronous IIFE (Immediately-invoked function expression)
 })();
 ```
 
-# Interesting stuff to read
-- https://github.com/petkaantonov/bluebird/wiki/Promise-Anti-patterns#the-thensuccess-fail-anti-pattern
-- https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261
-- https://medium.com/front-end-hacking/callbacks-promises-and-async-await-ad4756e01d90
+# Will map work with async functions?
+Let's say we have the following situation:
+
+```
+const { promisifiedWithUtilTimeout } = require('./promisify.js');
+
+const doSomethingAsync = async (value) => {
+  await promisifiedWithUtilTimeout(1000); // just faking some async operation
+  return Promise.resolve(`returning some result for ${value}`);
+};
+
+const arrayToMap = ['value1', 'value2', 'value3', 'value4'];
+
+const result = arrayToMap.map(val => doSomethingAsync(val));
+console.log(result);  // what do we have here?
+```
+
+**Do we have the results or not?**
+
+# Interesting stuff to read/watch
+- [What is a promise](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261)
+- [callbacks, Promises and async/await](https://medium.com/front-end-hacking/callbacks-promises-and-async-await-ad4756e01d90)
+- Video: [Is async/await useless?](https://www.youtube.com/watch?v=ho5PnBOoacw)
+- [Top level await](https://gist.github.com/Rich-Harris/0b6f317657f5167663b493c722647221)
+- [Then, success, fail anti-pattern](https://github.com/petkaantonov/bluebird/wiki/Promise-Anti-patterns#the-thensuccess-fail-anti-pattern)
