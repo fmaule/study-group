@@ -63,6 +63,26 @@ console.log(result);  // what do we have here?
 
 **Do we have the results or not?**
 
+# Is async/await *really* better than then()?
+
+```
+doSomethingAsyncThatWillError()
+  .then(res => console.log(res))
+  .catch(e => console.error('OMG!!11 error!', e));
+```
+
+```
+try {
+  const res = await doSomethingAsyncThatWillError();
+  console.log(res);
+} catch (e) {
+  console.error('OMG!!11 error!', e);
+}
+```
+
+
+
+
 # Interesting stuff to read/watch
 - [What is a promise](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261)
 - [callbacks, Promises and async/await](https://medium.com/front-end-hacking/callbacks-promises-and-async-await-ad4756e01d90)
