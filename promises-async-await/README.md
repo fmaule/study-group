@@ -14,7 +14,7 @@ You can use the **await** keyword only inside an **async** function.
 
 So what if you want to await something inside your main scope, given that it's not *async* ?
 
-You can achieve that in two ways:
+You can achieve that in three ways:
 
 chaining the function to a .then
 
