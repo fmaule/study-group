@@ -1,0 +1,15 @@
+{
+  "name": "promises-async-await",
+  "version": "1.0.0",
+  "description": "Some examples about async/await/promises for the study group",
+  "dependencies": {
+    "chance": "^1.0.16",
+    "string-to-stream": "^1.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fernando A. Maule <fer@maule.pro>",
+  "license": "MIT"
+}

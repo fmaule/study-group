@@ -40,3 +40,8 @@ creating an asynchronous IIFE (Immediately-invoked function expression)
   doOtherStuffThatCanBeSync();
 })();
 ```
+
+# Interesting stuff to read
+- https://github.com/petkaantonov/bluebird/wiki/Promise-Anti-patterns#the-thensuccess-fail-anti-pattern
+- https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261
+- https://medium.com/front-end-hacking/callbacks-promises-and-async-await-ad4756e01d90

@@ -1,4 +1,8 @@
 const wrappedTimeout = require('./wrapper-function');
+const {     
+  promisifiedWithUtilTimeout,
+  promisifiedWithUtilTimeoutShorter,
+} = require('./promisify.js');
 
 const timeoutPromise = wrappedTimeout(1000);              // Call the function, it will return a Promise
 console.log('timeoutPromise:', timeoutPromise);           // This will (immediately) print Promise { <pending> }
@@ -24,4 +28,12 @@ fnThatCanAwait();                                        // Call the async funct
 (async () => {
   await wrappedTimeout(2000);                             // This will await() and stop the execution inside this function, until the Promise resolves.
   console.log('IIFE call, awaited 2s');                   // This will executed AFTER the Promise resolves
+})();
+
+// Call the other implementations 
+(async () => {
+  await promisifiedWithUtilTimeout(1000);                
+  console.log('promisifiedWithUtilTimeout, awaited 1s');
+  await promisifiedWithUtilTimeoutShorter(1000);                
+  console.log('promisifiedWithUtilTimeoutShorter, awaited 1s');
 })();
