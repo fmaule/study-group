@@ -1,5 +1,5 @@
 const wrappedTimeout = require('./wrapper-function');
-const {     
+const {
   promisifiedWithUtilTimeout,
   promisifiedWithUtilTimeoutShorter,
 } = require('./promisify.js');
@@ -13,12 +13,12 @@ timeoutPromise
 
 
 // But what if we want to use async/await in the main scope?
-// You can't use 'await' outside an 'async' function. 
+// You can't use 'await' outside an 'async' function.
 
 const fnThatCanAwait = async () => {
   await wrappedTimeout(3000);                            // This will await() and stop the execution inside this function, until the Promise resolves.
   console.log('async called from main, awaited 3s');     // This will executed AFTER the Promise resolves
-}
+};
 
 fnThatCanAwait();                                        // Call the async function from the main scope
 
@@ -30,10 +30,10 @@ fnThatCanAwait();                                        // Call the async funct
   console.log('IIFE call, awaited 2s');                   // This will executed AFTER the Promise resolves
 })();
 
-// Call the other implementations 
+// Call the other implementations
 (async () => {
-  await promisifiedWithUtilTimeout(1000);                
+  await promisifiedWithUtilTimeout(1000);
   console.log('promisifiedWithUtilTimeout, awaited 1s');
-  await promisifiedWithUtilTimeoutShorter(1000);                
+  await promisifiedWithUtilTimeoutShorter(1000);
   console.log('promisifiedWithUtilTimeoutShorter, awaited 1s');
 })();
